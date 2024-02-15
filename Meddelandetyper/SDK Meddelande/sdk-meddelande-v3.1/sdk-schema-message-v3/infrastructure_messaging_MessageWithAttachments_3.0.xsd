@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements. See the NOTICE file
+ distributed with this work for additional information
+ regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+ to you under the Apache License, Version 2.0 (the
+ "License"); you may not use this file except in compliance
+ with the License. You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing,
+ software distributed under the License is distributed on an
+ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the
+ specific language governing permissions and limitations
+ under the License.
+ -->
+<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'
+	xmlns:tns='urn:riv:infrastructure:messaging:MessageWithAttachments:3'
+	targetNamespace='urn:riv:infrastructure:messaging:MessageWithAttachments:3'
+	elementFormDefault='qualified' attributeFormDefault='unqualified'
+	version='3.0'>
+
+	<xs:complexType name="MessageType">
+		<xs:sequence>
+			<xs:element name="messageHeader"
+				type="tns:MessageHeaderType" minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="messageBody" type="tns:MessageBodyType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MessageHeaderType">
+		<xs:sequence>
+			<xs:element name="creationDateTime" type="xs:dateTime"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="messageId" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="conversationId" type="xs:string"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="refToMessageId" type="xs:string"
+				minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" type="xs:string"
+				minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:element name="confidentiality" type="xs:boolean"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="generatingSystem" type="tns:IIType"
+				minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:element name="recipient" type="tns:RecipientType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="sender" type="tns:SenderType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:complexType name="MessageBodyType">
+		<xs:sequence>
+			<xs:element name="documents" type="tns:DigitalDocumentType"
+				minOccurs="1" maxOccurs="unbounded">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DigitalDocumentType">
+		<xs:sequence>
+			<xs:element name="documentID" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="documentName" type="xs:string"
+				minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:element name="index" type="xs:string" minOccurs="0"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="ContentFiles" type="tns:ContentAsBase64"
+				minOccurs="0" maxOccurs="unbounded">
+			</xs:element>
+			<xs:element name="ContentText" type="tns:contentAsText"
+				minOccurs="0" maxOccurs="unbounded">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ContentAsBase64">
+		<xs:sequence>
+			<xs:element name="fileName" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="contentType" type="xs:string"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="content" type="xs:string" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="ContentDataType">
+		<xs:sequence>
+			<xs:element name="about" type="xs:string"></xs:element>
+			<xs:element name="memo" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="SenderType">
+		<xs:sequence>
+			<xs:element name="senderID" type="tns:IIType" minOccurs="1"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="attention" type="tns:AttentionDataType"
+				minOccurs="0" maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RecipientType">
+		<xs:sequence>
+			<xs:element name="recipientID" type="tns:IIType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="attention" type="tns:AttentionDataType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AttentionDataType">
+		<xs:sequence>
+			<xs:element name="person" type="tns:AttentionPersonType"
+				minOccurs="0" maxOccurs="unbounded">
+			</xs:element>
+			<xs:element name="subOrganization"
+				type="tns:subOrganizationType" minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="reference" type="tns:ReferenceType"
+				minOccurs="0" maxOccurs="unbounded">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+	</xs:complexType>
+
+	<xs:element name="messagePayload" type="tns:MessagePayloadType"></xs:element>
+
+
+
+	<xs:complexType name="IIType">
+		<xs:sequence>
+			<xs:element name="root" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+			<xs:element name="extension" type="xs:string" minOccurs="1"
+				maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CVType">
+		<xs:annotation>
+			<xs:documentation />
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0" />
+			<xs:element name="codeSystem" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="codeSystemName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="codeSystemVersion" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="displayName" type="xs:string"
+				minOccurs="0" />
+			<xs:element name="originalText" type="xs:string"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AttentionPersonType">
+		<xs:sequence>
+			<xs:element name="personId" type="tns:IIType" minOccurs="0"
+				maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OrganizationType">
+		<xs:sequence>
+			<xs:element name="organizationId" type="tns:IIType"></xs:element>
+			<xs:element name="label" type="xs:string"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="subOrganizationType">
+		<xs:sequence>
+			<xs:element name="organizationId" type="tns:IIType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:simpleType name="DateType">
+		<xs:annotation>
+			<xs:documentation>Date format YYYYMMDD</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern
+				value="(19|20)\d\d(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])" />
+		</xs:restriction>
+	</xs:simpleType>
+
+
+	<xs:complexType name="contentAsText">
+		<xs:sequence>
+			<xs:element name="characterSequence" type="xs:string"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+
+	<xs:complexType name="ReferenceType">
+		<xs:sequence>
+			<xs:element name="referenceId" type="tns:IIType"
+				minOccurs="1" maxOccurs="1">
+			</xs:element>
+			<xs:element name="label" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="256"></xs:maxLength>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+
+	</xs:complexType>
+
+
+
+
+
+
+	<xs:complexType name="MessagePayloadType">
+		<xs:sequence>
+            <xs:element name="message" type="tns:MessageType"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements. See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership. Sveriges Kommuner och Landsting licenses this file
+to you under the Apache License, Version 2.0 (the
+        "License"); you may not use this file except in compliance
+with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied. See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<iso:schema
+		xmlns="http://purl.oclc.org/dsdl/schematron"
+		xmlns:iso="http://purl.oclc.org/dsdl/schematron"
+		queryBinding='xslt2'
+		schemaVersion='ISO19757-3'>
+
+	<iso:title>Validation - SDK message</iso:title>
+	
+	<!-- 
+	
+		Validering av SDK-meddelande profil och innehållsspec
+		
+		Denna schematronfil eller tillsvarande validering skall användas för att validera innehållet i ett SDK meddelande:
+			- Innan försändelse
+			- Vid mottagande av ett SDK-meddelande
+		
+		Kvittens skall returneras med INFO/ ERROR i enlighet med SDK valideringprinciper
+	
+	-->
+	
+	<iso:ns prefix='tns' uri='urn:riv:infrastructure:messaging:MessageWithAttachments:3'/>
+
+	
+	<iso:pattern id="verifyNonEmptyElements">
+		<iso:rule context="tns:messagePayload//*">
+			<iso:assert test="normalize-space(.)" flag="error">invariant | Element <iso:name /> is included but empty. All elements included in the response must have valid values.</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+		
+	
+	<!-- Abstract patterns -->
+	<iso:pattern abstract="true" id="pattern.OrganizationIdentifier">
+		<iso:rule context="$path">
+			<iso:assert test="matches(., '^0203:.*')" flag="error">invariant | In $path, value should be set to "0203:domain-example.se" but was <value-of select="."/>.</iso:assert>
+			<iso:assert test="@Authority = '$authority'" flag="error">invariant | In $path, Authority should be set to $authority but was <value-of select="@Authority"/>.</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	<iso:pattern abstract="true" id="pattern.Timestamp">
+		<iso:rule context="$path">
+			<iso:assert test="matches(., '^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{1,3}Z$')" flag="error">invariant | In $path, Timestamp should match pattern "YYYY-MM-DD'T'hh:mm:ss.s'Z'" but was <value-of select="."/>. | </iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	
+	<iso:pattern abstract="true" id="pattern.UUID">
+		<iso:rule context="$path">
+			<iso:assert test="matches(., '^[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}$')" flag="error">invariant | In $path, <value-of select="."/> is not a valid UUID </iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	
+	<iso:pattern abstract="true" id="pattern.stringMaxLength">
+		<iso:rule context="$path">
+			<iso:assert test="string-length(.) le $length" flag="error">invariant | In $path, string length <value-of select="string-length(.)"/> exceeded maxlength $length</iso:assert>
+		</iso:rule>
+	</iso:pattern>	
+	
+	
+	<iso:pattern abstract="true" id="pattern.contentAsTextType">
+		<iso:rule context="$path">
+			<iso:assert test="tns:characterSequence not null" flag="error">invariant | In $path, Should have a characterSequence</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	
+	<iso:pattern abstract="true" id="pattern.Equals">	
+		<iso:rule context="$path">
+			<iso:assert test="($firstElement)" flag="error">invariant | In $path, $firstElement must exist</iso:assert>
+			<iso:assert test="($secondElement)" flag="error">invariant | In $path, $secondElement must exist</iso:assert>
+			<iso:assert test="$firstElement = $secondElement" flag="error">invariant | In $path, $firstElement is not equal to $ $secondElement [Value <value-of select="$firstElement"/> must be equal to <value-of select="$secondElement"/>]</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+
+	<iso:pattern abstract="true" id="pattern.basesixtyfour">
+		<iso:rule context="$path">
+			<!-- RFC 4648 -->
+			<!-- Schematron har inte stöd för non-capturing groups. Enklare reg-exp används -->
+			<iso:assert test="matches(. , '^[a-zA-Z0-9+/]')" flag="error">invariant | In $path, <value-of select="."/> must be a valid base64 encoded string</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+
+	<iso:pattern abstract="true" id="pattern.notAllowed">
+		<iso:rule context="$path">
+			<iso:assert test="not(.)" flag="error">invariant | In $path, element <iso:name /> is not allowed |</iso:assert>
+		</iso:rule>
+	</iso:pattern>	
+	
+	<iso:pattern abstract="true" id="pattern.addressbookRoot">
+		<iso:rule context="$path">
+			<iso:assert test=". eq 	'urn:riv:infrastructure:messaging:functionalAddress'" flag="error">invariant | In $path, element <iso:name /> must be set to 'urn:riv:infrastructure:messaging:functionalAddress' |</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+
+		
+
+	<!-- Logiska regler -->
+	<iso:pattern id="conversationIdMustExist">
+		<iso:rule context="tns:messageHeader">
+			<iso:assert test="count(tns:conversationId) eq 1" flag="error">invariant | In <iso:name />, conversationId must be set. If this is a new message, use the same UUID as messageId to start new conversation</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	
+
+	<iso:pattern id="recipientIdvalue">
+		<iso:rule context="tns:recipientID/tns:root">
+			<iso:assert test=". = 'iso6523-actorid-upis'" flag="error">invariant | In <iso:name />, should be set to 'iso6523-actorid-upis' but was <value-of select="."/>.</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	<iso:pattern id="senderIdvalue">
+		<iso:rule context="tns:senderID/tns:root">
+			<iso:assert test=". = 'iso6523-actorid-upis'" flag="error">invariant | In <iso:name /> should be set to 'iso6523-actorid-upis' but was <value-of select="."/>.</iso:assert>
+		</iso:rule>
+	</iso:pattern>
+	
+	<!-- Implement abstract patterns -->
+
+	<!--MessageType-->
+	<iso:pattern id="creationDateTime" is-a="pattern.Timestamp">
+		<iso:param name="path" value="tns:creationDateTime" />
+	</iso:pattern>
+	
+	<iso:pattern id="MessageId" is-a="pattern.UUID">
+		<iso:param name="path" value="tns:messageId" />
+	</iso:pattern>
+	
+	<iso:pattern id="conversationId" is-a="pattern.UUID">
+		<iso:param name="path" value="tns:conversationId" />
+	</iso:pattern>
+	
+	<iso:pattern id="refToMessageId" is-a="pattern.UUID">
+		<iso:param name="path" value="tns:refToMessageId" />
+	</iso:pattern>
+	
+	<iso:pattern id="subjectlabel" is-a="pattern.stringMaxLength">
+		<iso:param name="path" value="tns:messageHeader/tns:label" />
+		<iso:param name="length" value="256" />
+	</iso:pattern>
+	
+	<iso:pattern id="contentFiles" is-a="pattern.basesixtyfour">
+		<iso:param name="path" value="tns:ContentFiles/tns:content" />
+	</iso:pattern>
+	
+	<iso:pattern id="subOrgRoot" is-a="pattern.addressbookRoot">
+		<iso:param name="path" value="tns:subOrganization/tns:organizationId/tns:root" />
+	</iso:pattern>
+	
+
+</iso:schema>

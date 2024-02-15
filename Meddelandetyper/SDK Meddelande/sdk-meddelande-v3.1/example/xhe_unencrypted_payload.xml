@@ -1,0 +1,123 @@
+<ns5:XHE xmlns="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents" xmlns:ns2="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExtensionComponents" xmlns:ns3="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents" xmlns:ns4="http://www.w3.org/2000/09/xmldsig#" xmlns:ns5="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope" xmlns:ns6="urn:riv:infrastructure:messaging:MessageWithAttachments:3">
+	<XHEVersionID>1.0</XHEVersionID>
+	<CustomizationID>urn:fdc:digg.se:edelivery:xhe:1</CustomizationID>
+	<ns3:Header>
+		<ID>7bc5576a-3f87-4cf5-a0c5-277da06fcacb</ID>
+		<CreationDateTime>2022-10-13T18:10:39.844Z</CreationDateTime>
+		<ns3:BusinessScope>
+			<ns3:BusinessScopeCriterion>
+				<BusinessScopeCriterionTypeCode>FEDERATIONID</BusinessScopeCriterionTypeCode>
+				<BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:federation:sdk</BusinessScopeCriterionValue>
+			</ns3:BusinessScopeCriterion>
+			<ns3:BusinessScopeCriterion>
+				<BusinessScopeCriterionTypeCode>PROCESSID</BusinessScopeCriterionTypeCode>
+				<BusinessScopeCriterionValue>bdx:noprocess</BusinessScopeCriterionValue>
+			</ns3:BusinessScopeCriterion>
+			<ns3:BusinessScopeCriterion>
+				<BusinessScopeCriterionTypeCode>PROCESSID_SCHEME</BusinessScopeCriterionTypeCode>
+				<BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:process</BusinessScopeCriterionValue>
+			</ns3:BusinessScopeCriterion>
+			<ns3:BusinessScopeCriterion>
+				<BusinessScopeCriterionTypeCode>DOCUMENTID</BusinessScopeCriterionTypeCode>
+				<BusinessScopeCriterionValue>urn:riv:infrastructure:messaging:MessageWithAttachments:3::messagePayload##3.0::tm-base-ext-sigenc</BusinessScopeCriterionValue>
+			</ns3:BusinessScopeCriterion>
+			<ns3:BusinessScopeCriterion>
+				<BusinessScopeCriterionTypeCode>DOCUMENTID_SCHEME</BusinessScopeCriterionTypeCode>
+				<BusinessScopeCriterionValue>busdox-docid-qns</BusinessScopeCriterionValue>
+			</ns3:BusinessScopeCriterion>
+		</ns3:BusinessScope>
+		<ns3:FromParty>
+			<ns3:PartyIdentification>
+				<ID schemeID="iso6523-actorid-upis">0203:testb.testbed.inera.se</ID>
+			</ns3:PartyIdentification>
+		</ns3:FromParty>
+		<ns3:ToParty>
+			<ns3:PartyIdentification>
+				<ID schemeID="iso6523-actorid-upis">0203:testa.testbed.inera.se</ID>
+			</ns3:PartyIdentification>
+		</ns3:ToParty>
+	</ns3:Header>
+	<ns3:Payloads>
+		<ns3:Payload>
+			<DocumentTypeCode>Q{urn:riv:infrastructure:messaging:MessageWithAttachments:3}messagePayload</DocumentTypeCode>
+			<ContentTypeCode>application/xml</ContentTypeCode>
+			<HandlingServiceID>sdk.testbed.0203:testa.testbed.inera.se</HandlingServiceID>
+			<InstanceEncryptionIndicator>false</InstanceEncryptionIndicator>
+			<ns3:PayloadContent>
+				<ns6:messagePayload>
+					<ns6:message>
+						<ns6:messageHeader>
+							<ns6:creationDateTime>2022-10-13T18:10:39.843Z</ns6:creationDateTime>
+							<ns6:messageId>7bc5576a-3f87-4cf5-a0c5-277da06fcacb</ns6:messageId>
+							<ns6:conversationId>7bc5576a-3f87-4cf5-a0c5-277da06fcacb</ns6:conversationId>
+							<ns6:label>En rubrik</ns6:label>
+							<ns6:confidentiality>false</ns6:confidentiality>
+							<ns6:generatingSystem>
+								<ns6:root>un-encoded</ns6:root>
+								<ns6:extension>SDK Test MessageService</ns6:extension>
+							</ns6:generatingSystem>
+							<ns6:recipient>
+								<ns6:recipientID>
+									<ns6:root>iso6523-actorid-upis</ns6:root>
+									<ns6:extension>0203:testa.testbed.inera.se</ns6:extension>
+								</ns6:recipientID>
+								<ns6:attention>
+									<ns6:subOrganization>
+										<ns6:organizationId>
+											<ns6:root>urn:riv:infrastructure:messaging:functionalAddress</ns6:root>
+											<ns6:extension>sdk.testbed.0203:testa.testbed.inera.se</ns6:extension>
+										</ns6:organizationId>
+									</ns6:subOrganization>
+								</ns6:attention>
+							</ns6:recipient>
+							<ns6:sender>
+								<ns6:senderID>
+									<ns6:root>iso6523-actorid-upis</ns6:root>
+									<ns6:extension>0203:testb.testbed.inera.se</ns6:extension>
+								</ns6:senderID>
+								<ns6:attention>
+									<ns6:subOrganization>
+										<ns6:organizationId>
+											<ns6:root>urn:riv:infrastructure:messaging:functionalAddress</ns6:root>
+											<ns6:extension>sdk.testbed.0203:testb.testbed.inera.se</ns6:extension>
+										</ns6:organizationId>
+									</ns6:subOrganization>
+								</ns6:attention>
+							</ns6:sender>
+						</ns6:messageHeader>
+						<ns6:messageBody>
+							<ns6:documents>
+								<ns6:documentID>SDK-Meddelande</ns6:documentID>
+								<ns6:documentName>SDK-Meddelande</ns6:documentName>
+								<ns6:index>1</ns6:index>
+								<ns6:ContentText>
+									<ns6:characterSequence>Anslut till SDK!</ns6:characterSequence>
+								</ns6:ContentText>
+							</ns6:documents>
+						</ns6:messageBody>
+					</ns6:message>
+				</ns6:messagePayload>
+			</ns3:PayloadContent>
+		</ns3:Payload>
+	</ns3:Payloads>
+	<dsig:Signature xmlns:dsig="http://www.w3.org/2000/09/xmldsig#">
+		<dsig:SignedInfo>
+			<dsig:CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+			<dsig:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+			<dsig:Reference URI="">
+				<dsig:Transforms>
+					<dsig:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+					<dsig:Transform Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315"/>
+				</dsig:Transforms>
+				<dsig:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+				<dsig:DigestValue>13LervAzHFBNjB7PPnYSxkGBUid/h/5ijjA9nGN9vP4=</dsig:DigestValue>
+			</dsig:Reference>
+		</dsig:SignedInfo>
+		<dsig:SignatureValue>q+v+HS1Cy/jqf3UaW1oFCmuSho2n9fFXAlDoV2uvgQiDmUoXXawKdWYTtJFKbSgNIwunWXShsJQJarzfYTt83DBpM3Z6OX5PC3I1B3SqdSWvnMwtJ0WZWJNaVOLJphWPfvRHxHdN9Wm+9jmLJCWMvy5m4BX6XnAgDTF5p7iq4VkQ9vmyG/U1VOs03WIRrSNuNctWzkAvHISBz5tvcE0+AjBKZ4d9cXNiGJrLdCueYBzVAjhOwPm2VI/HA0/ybLN2iCWgvrNx+WuC4+RvgS1jQeGma2lOSawE/CFfEZ0MyI5WrO4n9W7Ac6ycC1iCFopv81CmiMs8lDfen/5qb7r5Hna4X9wDyLzTrLY+CtyOiq3ogYGdAiCExpK23zUkAeMZcBf2CAnSAJMDPLM2l3ZuXnxhbhhsFV4WQ2RDK8nxiFSBcXZnJwNWGel9ACOR0u4u6EVAtRsvdJLMHA/42qfoXuANZ31umhsUOEwsLZyyZxuEdxSBJKp3F0vgX11M+2Rt</dsig:SignatureValue>
+		<dsig:KeyInfo>
+			<dsig:X509Data>
+				<dsig:X509Certificate>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</dsig:X509Certificate>
+			</dsig:X509Data>
+		</dsig:KeyInfo>
+	</dsig:Signature>
+</ns5:XHE>

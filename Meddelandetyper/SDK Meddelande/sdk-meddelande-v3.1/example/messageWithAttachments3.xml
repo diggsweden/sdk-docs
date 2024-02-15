@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<ns6:messagePayload xmlns:ns6="urn:riv:infrastructure:messaging:MessageWithAttachments:3">
+  <ns6:message>
+    <ns6:messageHeader>
+      <ns6:creationDateTime>2022-10-13T18:10:39.843Z</ns6:creationDateTime>
+      <ns6:messageId>7bc5576a-3f87-4cf5-a0c5-277da06fcacb</ns6:messageId>
+      <ns6:conversationId>7bc5576a-3f87-4cf5-a0c5-277da06fcacb</ns6:conversationId>
+      <ns6:label>En rubrik</ns6:label>
+      <ns6:confidentiality>false</ns6:confidentiality>
+      <ns6:generatingSystem>
+        <ns6:root>un-encoded</ns6:root>
+        <ns6:extension>SDK Test MessageService</ns6:extension>
+      </ns6:generatingSystem>
+      <ns6:recipient>
+        <ns6:recipientID>
+          <ns6:root>iso6523-actorid-upis</ns6:root>
+          <ns6:extension>0203:testa.testbed.inera.se</ns6:extension>
+        </ns6:recipientID>
+        <ns6:attention>
+          <ns6:subOrganization>
+            <ns6:organizationId>
+              <ns6:root>urn:riv:infrastructure:messaging:functionalAddress</ns6:root>
+              <ns6:extension>sdk.testbed.0203:testa.testbed.inera.se</ns6:extension>
+            </ns6:organizationId>
+          </ns6:subOrganization>
+        </ns6:attention>
+      </ns6:recipient>
+      <ns6:sender>
+        <ns6:senderID>
+          <ns6:root>iso6523-actorid-upis</ns6:root>
+          <ns6:extension>0203:testb.testbed.inera.se</ns6:extension>
+        </ns6:senderID>
+        <ns6:attention>
+          <ns6:subOrganization>
+            <ns6:organizationId>
+              <ns6:root>urn:riv:infrastructure:messaging:functionalAddress</ns6:root>
+              <ns6:extension>sdk.testbed.0203:testb.testbed.inera.se</ns6:extension>
+            </ns6:organizationId>
+          </ns6:subOrganization>
+        </ns6:attention>
+      </ns6:sender>
+    </ns6:messageHeader>
+    <ns6:messageBody>
+      <ns6:documents>
+        <ns6:documentID>SDK-Meddelande</ns6:documentID>
+        <ns6:documentName>SDK-Meddelande</ns6:documentName>
+        <ns6:index>1</ns6:index>
+        <ns6:ContentText>
+          <ns6:characterSequence>Anslut till SDK!</ns6:characterSequence>
+        </ns6:ContentText>
+      </ns6:documents>
+    </ns6:messageBody>
+  </ns6:message>
+</ns6:messagePayload>
