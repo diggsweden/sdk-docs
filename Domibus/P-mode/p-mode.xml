@@ -1,0 +1,86 @@
+<!-- 
+The Party value maps to the CN of your eDelivery certificate, adjust to your settings! 
+-->
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:configuration xmlns:ns2="http://domibus.eu/configuration" party="AP0001-SDK-QA">
+    <businessProcesses>
+        <roles>
+            <role name="defaultInitiatorRole" value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/initiator"/>
+            <role name="defaultResponderRole" value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/responder"/>
+        </roles>
+        <parties>
+            <partyIdTypes>
+                <partyIdType name="partyTypeUrn" value="urn:fdc:digg.se:edelivery:transportprofile:as4:partytype:ap"/>
+            </partyIdTypes>
+            <party name="AP0001-SDK-QA" endpoint="https://at-sdk.ipaas.inera.se/domibus/services/msh">
+                <identifier partyId="AP0001-SDK-QA" partyIdType="partyTypeUrn"/>
+            </party>
+        </parties>
+        <meps>
+            <mep name="oneway" value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/oneWay" legs="0"/>
+            <binding name="push" value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/push"/>
+            <binding name="pull" value="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/pull"/>
+        </meps>
+        <properties>
+            <property name="originalSenderProperty" key="originalSender" datatype="string" required="true"/>
+            <property name="finalRecipientProperty" key="finalRecipient" datatype="string" required="true"/>
+            <propertySet name="eDeliveryPropertySet">
+                <propertyRef property="finalRecipientProperty"/>
+                <propertyRef property="originalSenderProperty"/>
+            </propertySet>
+        </properties>
+        <payloadProfiles>
+            <payload name="businessContentPayload" cid="cid:message" mimeType="text/xml" maxSize="0" required="true" inBody="false"/>
+            <payload name="businessContentAttachment" cid="cid:attachment" mimeType="application/octet-stream" maxSize="0" required="false" inBody="false"/>
+            <payloadProfile name="MessageProfile" maxSize="2147483647">
+                <attachment name="businessContentPayload"/>
+                <attachment name="businessContentAttachment"/>
+            </payloadProfile>
+        </payloadProfiles>
+        <securities>
+            <security name="eDeliveryAS4Policy_BST" policy="eDeliveryAS4Policy_BST.xml" signatureMethod="RSA_SHA256"/>
+        </securities>
+        <errorHandlings>
+            <errorHandling name="demoErrorHandling" errorAsResponse="true" businessErrorNotifyProducer="true" businessErrorNotifyConsumer="true" deliveryFailureNotifyProducer="true"/>
+        </errorHandlings>
+        <agreements>
+            <agreement name="agreement1" value="A1" type=""/>
+        </agreements>
+        <services>
+            <service name="eDeliveryMessageService" value="bdx:noprocess" type="urn:fdc:digg.se:edelivery:process"/>
+        </services>
+        <actions>
+            <action name="messageAction_v3" value="busdox-docid-qns::urn:riv:infrastructure:messaging:MessageWithAttachments:3::messagePayload##3.0::tm-base-ext-sigenc"/>
+            <action name="receiptAction" value="busdox-docid-qns::urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2::ApplicationResponse##fdc:digg.se:edelivery:messagetype:response:1::2.1::tm-base-ext-sigenc"/>
+        </actions>
+        <as4>
+            <receptionAwareness name="receptionAwareness" retry="12;4;CONSTANT" duplicateDetection="true"/>
+            <reliability name="AS4Reliability" replyPattern="response" nonRepudiation="true"/>
+        </as4>
+        <legConfigurations>
+            <legConfiguration name="messageWithAttachment_v3" reliability="AS4Reliability" security="eDeliveryAS4Policy_BST" receptionAwareness="receptionAwareness" service="eDeliveryMessageService" action="messageAction_v3" defaultMpc="defaultMpc" propertySet="eDeliveryPropertySet" payloadProfile="MessageProfile" errorHandling="demoErrorHandling" compressPayloads="true"/>
+            <legConfiguration name="messageReceipt" reliability="AS4Reliability" security="eDeliveryAS4Policy_BST" receptionAwareness="receptionAwareness" service="eDeliveryMessageService" action="receiptAction" defaultMpc="defaultMpc" propertySet="eDeliveryPropertySet" payloadProfile="MessageProfile" errorHandling="demoErrorHandling" compressPayloads="true"/>
+        </legConfigurations>
+        <process name="senderProcess" initiatorRole="defaultInitiatorRole" responderRole="defaultResponderRole" mep="oneway" binding="push">
+            <initiatorParties>
+                <initiatorParty name="AP0001-SDK-QA"/>
+            </initiatorParties>
+            <legs>
+                <leg name="messageWithAttachment_v3"/>
+                <leg name="messageReceipt"/>
+            </legs>
+        </process>
+        <process name="recieverProcess" initiatorRole="defaultInitiatorRole" responderRole="defaultResponderRole" mep="oneway" binding="push">
+            <responderParties>
+                <responderParty name="AP0001-SDK-QA"/>
+            </responderParties>
+            <legs>
+                <leg name="messageWithAttachment_v3"/>
+                <leg name="messageReceipt"/>
+            </legs>
+        </process>
+    </businessProcesses>
+    <mpcs>
+        <mpc name="defaultMpc" retention_downloaded="0" retention_undownloaded="14400" retention_sent="14400" delete_message_metadata="false" max_batch_delete="1000" default="true" enabled="true" qualifiedName="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/defaultMPC"/>
+    </mpcs>
+</ns2:configuration>
