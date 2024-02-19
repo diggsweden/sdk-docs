@@ -1,10 +1,4 @@
 # Säker digital kommunikation
-## Domibus P-mode
-
-TODO introduktionstext
-
-Inera info 
-https://inera.atlassian.net/wiki/spaces/OISDK/pages/2793865227/Konfiguration+av+Certifikat+-+Accesspunkt#eDelivery/AS4
 
 ## eDelivery/AS4 
 De kryptografiska säkerhetsfunktionerna för kommunikation med protokollet eDelivery/AS4 konfigureras i Accesspunkten.
