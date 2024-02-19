@@ -1,6 +1,5 @@
-![Digg](https://github.com/diggsweden/.github/blob/main/profile/digg-logo.png?raw=trueassets/20240215_075358_digg-logo.pn)
+![Digg - Säker digital kommunikation](/images/SDK_logo.png)
 
-# Säker digital kommunikation
 
 ## B SDK för dig som leverantör av meddelandetjänst
 
@@ -10,7 +9,7 @@ Läs mer om Säker digital kommunikation på Diggs informationssidor https://dig
 
 
 ### Accesspunktsoperatörer
-- Domibus
+- Exempel för Domibus (EC sample implementation)
 
 ### Leverantörer av meddelandesystem
 - API

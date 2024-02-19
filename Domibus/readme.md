@@ -1,4 +1,4 @@
-# Säker digital kommunikation
+![Digg - Säker digital kommunikation](/images/SDK_logo.png)
 
 ## eDelivery/AS4 
 De kryptografiska säkerhetsfunktionerna för kommunikation med protokollet eDelivery/AS4 konfigureras i Accesspunkten.
