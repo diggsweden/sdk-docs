@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    targetNamespace="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+    elementFormDefault="qualified">
+  <xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2" schemaLocation="DIGG%20UBL-ApplicationResponse-2.1_urn_oasis_names_specification_ubl_schema_xsd_CommonAggregateComponents-2.xsd"/>
+  <xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" schemaLocation="DIGG%20UBL-ApplicationResponse-2.1_urn_oasis_names_specification_ubl_schema_xsd_CommonBasicComponents-2.xsd"/>
+  <xs:element name="ApplicationResponse" type="ApplicationResponseType"/>
+  <xs:complexType name="ApplicationResponseType">
+    <xs:sequence>
+      <xs:element ref="cbc:CustomizationID"/>
+      <xs:element ref="cbc:ProfileID"/>
+      <xs:element ref="cbc:ID"/>
+      <xs:element ref="cbc:IssueDate"/>
+      <xs:element ref="cbc:IssueTime"/>
+      <xs:element ref="cac:SenderParty"/>
+      <xs:element ref="cac:ReceiverParty"/>
+      <xs:element ref="cac:DocumentResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+XSD-fel
+-->
+<ApplicationResponse xmlns="urn:oasis:names:specification:ubl:schema:xsd:ApplicationResponse-2"
+					 xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+					 xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+	<cbc:CustomizationID>urn:fdc:digg.se:edelivery:messagetype:response:1</cbc:CustomizationID>
+	<cbc:ProfileID>bdx:noprocess</cbc:ProfileID>
+	<cbc:ID>KVT-1</cbc:ID>
+	<cbc:IssueDate>2021-04-15</cbc:IssueDate>
+	<cbc:IssueTime>12:00:00Z</cbc:IssueTime>
+	<cac:SenderParty>
+		<cbc:EndpointID schemeID="iso6523-actorid-upis">0203:myndighetA.org</cbc:EndpointID>
+	</cac:SenderParty>
+	<cac:ReceiverParty>
+		<cbc:EndpointID schemeID="iso6523-actorid-upis">0203:myndighetB.org</cbc:EndpointID>
+	</cac:ReceiverParty>
+	<cac:DocumentResponse>
+		<cac:Response>
+			<cbc:ResponseCode>REJECTED</cbc:ResponseCode>
+		</cac:Response>
+		<cac:DocumentReference>
+			<cbc:ID>ID-FROM-XHE-12354689</cbc:ID>
+		</cac:DocumentReference>
+		<cac:LineResponse>
+			<cac:LineReference>
+				<cbc:LineID>NA</cbc:LineID>
+			</cac:LineReference>		
+			<cac:Response>
+				<cbc:ResponseCode>SV</cbc:ResponseCode>
+				<cac:Status>
+					<!--<cbc:StatusReasonCode></cbc:StatusReasonCode>-->
+					<cbc:StatusReason>Element ABC is not allowed under element EFG</cbc:StatusReason>
+				</cac:Status>
+			</cac:Response>
+		</cac:LineResponse>
+	</cac:DocumentResponse>
+</ApplicationResponse>
+	

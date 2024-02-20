@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
+    elementFormDefault="qualified">
+  <xs:complexType name="CodeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:normalizedString"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:simpleContent>
+      <xs:extension base="xs:normalizedString">
+        <xs:attribute name="schemeID" type="xs:normalizedString" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TextType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string"/>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

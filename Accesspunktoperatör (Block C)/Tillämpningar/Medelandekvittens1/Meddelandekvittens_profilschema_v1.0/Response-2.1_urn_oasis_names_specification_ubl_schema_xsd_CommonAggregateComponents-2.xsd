@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    targetNamespace="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+    elementFormDefault="qualified"
+    version="2.1">
+  <xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2" schemaLocation="DIGG%20UBL-ApplicationResponse-2.1_urn_oasis_names_specification_ubl_schema_xsd_CommonBasicComponents-2.xsd"/>
+  <xs:element name="DocumentReference" type="cac:DocumentReferenceType"/>
+  <xs:element name="DocumentResponse" type="cac:DocumentResponseType"/>
+  <xs:element name="LineReference" type="cac:LineReferenceType"/>
+  <xs:element name="LineResponse" type="cac:LineResponseType"/>
+  <xs:element name="ReceiverParty" type="cac:PartyType"/>
+  <xs:element name="Response" type="cac:ResponseType"/>
+  <xs:element name="SenderParty" type="cac:PartyType"/>
+  <xs:element name="Status" type="cac:StatusType"/>
+  <xs:complexType name="DocumentReferenceType">
+    <xs:sequence>
+      <xs:element ref="cbc:ID"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DocumentResponseType">
+    <xs:sequence>
+      <xs:element ref="cac:Response"/>
+      <xs:element ref="cac:DocumentReference"/>
+      <xs:element ref="cac:LineResponse" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LineReferenceType">
+    <xs:sequence>
+      <xs:element ref="cbc:LineID"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LineResponseType">
+    <xs:sequence>
+      <xs:element ref="cac:LineReference"/>
+      <xs:element ref="cac:Response"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PartyType">
+    <xs:sequence>
+      <xs:element ref="cbc:EndpointID"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseType">
+    <xs:sequence>
+      <xs:element ref="cbc:ResponseCode"/>
+      <xs:element ref="cac:Status" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:sequence>
+      <xs:element ref="cbc:StatusReasonCode" minOccurs="0"/>
+      <xs:element ref="cbc:StatusReason"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

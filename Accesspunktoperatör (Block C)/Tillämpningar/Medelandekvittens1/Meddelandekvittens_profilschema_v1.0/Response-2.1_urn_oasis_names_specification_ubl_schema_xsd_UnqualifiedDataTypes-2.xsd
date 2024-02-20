@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:ccts-cct="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2"
+    targetNamespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    elementFormDefault="qualified"
+    version="2.1">
+  <xs:import namespace="urn:un:unece:uncefact:data:specification:CoreComponentTypeSchemaModule:2" schemaLocation="DIGG%20UBL-ApplicationResponse-2.1_urn_un_unece_uncefact_data_specification_CoreComponentTypeSchemaModule_2.xsd"/>
+  <xs:complexType name="CodeType">
+    <xs:simpleContent>
+      <xs:extension base="ccts-cct:CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="DateType">
+    <xs:simpleContent>
+      <xs:extension base="xs:date"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:simpleContent>
+      <xs:extension base="ccts-cct:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TextType">
+    <xs:simpleContent>
+      <xs:extension base="ccts-cct:TextType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="TimeType">
+    <xs:simpleContent>
+      <xs:extension base="xs:time"/>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

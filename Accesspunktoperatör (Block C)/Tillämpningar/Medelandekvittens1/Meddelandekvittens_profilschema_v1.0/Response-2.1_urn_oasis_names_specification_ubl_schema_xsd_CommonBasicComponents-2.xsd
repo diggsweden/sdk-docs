@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:udt="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2"
+    targetNamespace="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2"
+    elementFormDefault="qualified"
+    version="2.1">
+  <xs:import namespace="urn:oasis:names:specification:ubl:schema:xsd:UnqualifiedDataTypes-2" schemaLocation="DIGG%20UBL-ApplicationResponse-2.1_urn_oasis_names_specification_ubl_schema_xsd_UnqualifiedDataTypes-2.xsd"/>
+  <xs:element name="CustomizationID" type="cbc:CustomizationIDType"/>
+  <xs:element name="EndpointID" type="cbc:EndpointIDType"/>
+  <xs:element name="ID" type="cbc:IDType"/>
+  <xs:element name="IssueDate" type="cbc:IssueDateType"/>
+  <xs:element name="IssueTime" type="cbc:IssueTimeType"/>
+  <xs:element name="LineID" type="cbc:LineIDType"/>
+  <xs:element name="ProfileID" type="cbc:ProfileIDType"/>
+  <xs:element name="ResponseCode" type="cbc:ResponseCodeType"/>
+  <xs:element name="StatusReason" type="cbc:StatusReasonType"/>
+  <xs:element name="StatusReasonCode" type="cbc:StatusReasonCodeType"/>
+  <xs:complexType name="CustomizationIDType">
+    <xs:simpleContent>
+      <xs:extension base="udt:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="EndpointIDType">
+    <xs:simpleContent>
+      <xs:extension base="udt:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IDType">
+    <xs:simpleContent>
+      <xs:extension base="udt:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IssueDateType">
+    <xs:simpleContent>
+      <xs:extension base="udt:DateType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="IssueTimeType">
+    <xs:simpleContent>
+      <xs:extension base="udt:TimeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="LineIDType">
+    <xs:simpleContent>
+      <xs:extension base="udt:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ProfileIDType">
+    <xs:simpleContent>
+      <xs:extension base="udt:IdentifierType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseCodeType">
+    <xs:simpleContent>
+      <xs:extension base="udt:CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StatusReasonCodeType">
+    <xs:simpleContent>
+      <xs:extension base="udt:CodeType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="StatusReasonType">
+    <xs:simpleContent>
+      <xs:extension base="udt:TextType"/>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

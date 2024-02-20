@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:XHE xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents" xmlns:xha="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents" xmlns:x="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope http://docs.oasis-open.org/bdxr/xhe/v1.0/cs03/xsdrt/XHE-1.0.xsd">
+  <XHEVersionID>1.0</XHEVersionID>
+  <CustomizationID>urn:fdc:digg.se:edelivery:xhe:1</CustomizationID>
+  <xha:Header>
+    <ID>862693f7-53d4-4d96-b35c-470055710092</ID>
+    <CreationDateTime>2022-01-30T17:52:58.1Z</CreationDateTime>
+    <xha:BusinessScope>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>DOCUMENTID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:riv:infrastructure:messaging:MessageWithAttachments:3::messagePayload##3.0::tm-base</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>DOCUMENTID_SCHEME</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>busdox-docid-qns</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>      
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>PROCESSID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>bdx:noprocess</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>PROCESSID_SCHEME</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:process</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>      
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>FEDERATIONID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:federation:test</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+    </xha:BusinessScope>
+    <xha:FromParty>
+      <xha:PartyIdentification>
+        <ID schemeID="iso6523-actorid-upis">0203:myndighetA.org</ID>
+      </xha:PartyIdentification>
+    </xha:FromParty>
+    <xha:ToParty>
+      <xha:PartyIdentification>
+        <ID schemeID="iso6523-actorid-upis">0203:myndighetB.org</ID>
+      </xha:PartyIdentification>
+    </xha:ToParty>
+  </xha:Header>
+  <xha:Payloads>
+    <xha:Payload>
+      <DocumentTypeCode>Q{urn:riv:infrastructure:messaging:MessageWithAttachments:2}Message</DocumentTypeCode>
+      <ContentTypeCode>application/xml</ContentTypeCode>
+      <HandlingServiceID>ABC</HandlingServiceID>
+      <InstanceEncryptionIndicator>false</InstanceEncryptionIndicator>
+      <xha:PayloadContent>
+          <tns:Message xmlns:tns="urn:riv:infrastructure:messaging:MessageWithAttachments:2">
+            <tns:messageHeader>
+              <tns:creationDateTime>2019-08-15T17:52:58.1Z</tns:creationDateTime>
+              <tns:messageId>ff325210-0690-42fe-b86f-95ecab821223</tns:messageId>
+              <tns:conversationId>a8480ada-6a1f-44a3-a960-9acaf4efcdcd</tns:conversationId>
+              <tns:label>Rubrik: Kallelse till möte</tns:label>
+              <tns:confidentiality>false</tns:confidentiality>
+              <tns:generatingSystem>
+                <tns:root>kodverk-id</tns:root>
+                <tns:extension>system-id-123456789</tns:extension>
+              </tns:generatingSystem>
+              <tns:recipient>
+                <tns:recipientID>
+                  <tns:root>iso6523-actorid-upis</tns:root>
+                  <tns:extension>0203:myndighetA.se</tns:extension>
+                </tns:recipientID>
+                <tns:label>Myndighet A</tns:label>
+                <tns:attention>
+                  <tns:subOrganization>
+                    <tns:organizationId>
+                      <tns:root>urn:riv:infrastructure:messaging:functionalAddress</tns:root>
+                      <tns:extension>sub-funktion-org-id</tns:extension>
+                    </tns:organizationId>
+                    <tns:label>Avdelningen för xyz</tns:label>
+                  </tns:subOrganization>
+                </tns:attention>
+              </tns:recipient>
+              <tns:sender>
+                <tns:senderID>
+                  <tns:root>iso6523-actorid-upis</tns:root>
+                  <tns:extension>0203:myndighetB.se</tns:extension>
+                </tns:senderID>
+                <tns:label>Myndighet B</tns:label>
+                <tns:attention>
+                  <tns:person>
+                    <tns:personId>
+                      <tns:root>1.2.752.29.6.2.1</tns:root>
+                      <tns:extension>SE23210NNNNN-person</tns:extension>
+                    </tns:personId>
+                    <tns:label>Pelle Person</tns:label>
+                  </tns:person>
+                  <tns:subOrganization>
+                    <tns:organizationId>
+                      <tns:root>urn:riv:infrastructure:messaging:functionalAddress</tns:root>
+                      <tns:extension>SE23210NNNN-SubOrgUnit-id</tns:extension>
+                    </tns:organizationId>
+                    <tns:label>Avdelning X</tns:label>
+                  </tns:subOrganization>
+                </tns:attention>
+              </tns:sender>
+            </tns:messageHeader>
+            <tns:messageBody>
+              <tns:documents>
+                <tns:documentID>SDK meddelande</tns:documentID>
+                <tns:documentName>Rubrik: Kallelse till SIP möte</tns:documentName>
+                <tns:index>1</tns:index>
+                <tns:ContentText>
+                  <tns:characterSequence>Textmeddelande. </tns:characterSequence>
+                </tns:ContentText>
+              </tns:documents>
+            </tns:messageBody>
+          </tns:Message>
+      </xha:PayloadContent>
+    </xha:Payload>
+  </xha:Payloads>
+</x:XHE>

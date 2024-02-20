@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Library:           Exchange Header Envelope (XHE) 1.0 OS
+                     http://www.unece.org/cefact
+                     https://docs.oasis-open.org/bdxr/xhe/v1.0/os/
+  Release Date:      25 April 2021
+  Module:            xsdrt/fragments/XHE-AggregateComponents-1.0.xsd
+  Generated on:      2021-05-10 19:37z
+  Copyright (c) UN/CEFACT 2021. All Rights Reserved.
+  Copyright (c) OASIS Open 2021. All Rights Reserved.
+-->
+<xsd:schema xmlns="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents"
+            xmlns:xha="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents"
+            xmlns:xhb="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified"
+            version="1.1">
+   <xsd:import namespace="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents"
+               schemaLocation="XHE-BasicComponents-1.0.xsd"/>
+    <!-- ==== Incorporate any desired constraints on the payload -->
+    <xsd:include schemaLocation="XHE-PayloadContentDataType-1.0.xsd"/>
+        <xsd:element name="BusinessScope" type="BusinessScopeType"/>
+   <xsd:element name="BusinessScopeCriterion" type="BusinessScopeCriterionType"/>
+   <xsd:element name="ExternalReference" type="ExternalReferenceType"/>
+   <xsd:element name="FromParty" type="PartyType"/>
+   <xsd:element name="Header" type="HeaderType"/>
+   <xsd:element name="InstanceDecryptionInformationExternalReference"
+                type="ExternalReferenceType"/>
+   <xsd:element name="InstanceDecryptionKeyExternalReference"
+                type="ExternalReferenceType"/>
+   <xsd:element name="Party" type="PartyType"/>
+   <xsd:element name="PartyIdentification" type="PartyIdentificationType"/>
+   <xsd:element name="Payload" type="PayloadType"/>
+   <xsd:element name="PayloadExternalReference" type="ExternalReferenceType"/>
+   <xsd:element name="Payloads" type="PayloadsType"/>
+   <xsd:element name="RelevantExternalReference" type="ExternalReferenceType"/>
+   <xsd:element name="ToParty" type="PartyType"/>
+   <xsd:complexType name="BusinessScopeType">
+      <xsd:sequence>
+         <xsd:element ref="xha:BusinessScopeCriterion"
+                      minOccurs="0"
+                      maxOccurs="unbounded"/>
+         <xsd:element ref="xha:ExternalReference" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="BusinessScopeCriterionType">
+      <xsd:sequence>
+         <xsd:element ref="xhb:BusinessScopeCriterionTypeCode"
+                      minOccurs="1"
+                      maxOccurs="1"/>
+         <xsd:element ref="xhb:BusinessScopeCriterionValue" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="ExternalReferenceType">
+      <xsd:sequence>
+         <xsd:element ref="xhb:ID" minOccurs="1" maxOccurs="1"/>
+         <xsd:element ref="xhb:AvailabilityStartDateTime" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:AvailabilityEndDateTime" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:Login" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:Password" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="HeaderType">
+      <xsd:sequence>
+         <xsd:element ref="xhb:ID" minOccurs="1" maxOccurs="1"/>
+         <xsd:element ref="xhb:UUID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:CreationDateTime" minOccurs="1" maxOccurs="1"/>
+         <xsd:element ref="xha:BusinessScope" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xha:FromParty" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xha:ToParty" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PartyType">
+      <xsd:sequence>
+         <xsd:element ref="xha:PartyIdentification" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PartyIdentificationType">
+      <xsd:sequence>
+         <xsd:element ref="xhb:ID" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PayloadType">
+      <xsd:sequence>
+         <xsd:element ref="xhb:ID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:Description" minOccurs="0" maxOccurs="unbounded"/>
+         <xsd:element ref="xhb:DocumentTypeCode" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:ContentTypeCode" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:CustomizationID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:ProfileID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:ProfileExecutionID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:HandlingServiceID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:ValidationTypeCode" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:ValidationVersionID" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:InstanceEncryptionIndicator" minOccurs="1" maxOccurs="1"/>
+         <xsd:element ref="xhb:InstanceEncryptionMethod" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xhb:InstanceHashValue" minOccurs="0" maxOccurs="1"/>
+         <xsd:element ref="xha:InstanceDecryptionInformationExternalReference"
+                      minOccurs="0"
+                      maxOccurs="1"/>
+         <xsd:element ref="xha:InstanceDecryptionKeyExternalReference"
+                      minOccurs="0"
+                      maxOccurs="1"/>
+         <xsd:element ref="xha:RelevantExternalReference"
+                      minOccurs="0"
+                      maxOccurs="unbounded"/>
+         <xsd:element ref="xha:PayloadExternalReference" minOccurs="0" maxOccurs="1"/>
+         <xsd:element name="PayloadContent"
+                      minOccurs="0"
+                      maxOccurs="1"
+                      type="PayloadContentType">
+           <xsd:annotation>
+               <xsd:documentation>The content of the payload when it is included in the envelope.</xsd:documentation>
+           </xsd:annotation>
+         </xsd:element>
+        </xsd:sequence>
+   </xsd:complexType>
+   <xsd:complexType name="PayloadsType">
+      <xsd:sequence>
+         <xsd:element ref="xha:Payload" minOccurs="1" maxOccurs="unbounded"/>
+      </xsd:sequence>
+   </xsd:complexType>
+</xsd:schema>
+<!-- ===== Copyright Notice ===== -->
+<!--
+UN/CEFACT
+
+   This document and translations of it may be copied and furnished to others,
+   and derivative works that comment on or otherwise explain it or assist
+   in its implementation may be prepared, copied, published and distributed,
+   in whole or in part, without restriction of any kind, provided that the
+   above copyright notice and this paragraph are included on all such copies
+   and derivative works. However, this document itself may not be modified in
+   any way, such as by removing the copyright notice or references to
+   UN/CEFACT, except as needed for the purpose of developing UN/CEFACT
+   specifications, in which case the procedures for copyrights defined in the
+   UN/CEFACT Intellectual Property Rights document must be followed, or as
+   required to translate it into languages other than English.
+   The limited permissions granted above are perpetual and will not be revoked
+   by UN/CEFACT or its successors or assigns.
+   
+   This document and the information contained herein is provided on an "AS IS"
+   basis and UN/CEFACT DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING
+   BUT NOT LIMITED TO ANY WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL
+   NOT INFRINGE ANY RIGHTS OR ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR
+   FITNESS FOR A PARTICULAR PURPOSE.
+
+OASIS
+
+  OASIS takes no position regarding the validity or scope of any 
+  intellectual property or other rights that might be claimed to pertain 
+  to the implementation or use of the technology described in this 
+  document or the extent to which any license under such rights 
+  might or might not be available; neither does it represent that it has 
+  made any effort to identify any such rights. Information on OASIS's 
+  procedures with respect to rights in OASIS specifications can be 
+  found at the OASIS website. Copies of claims of rights made 
+  available for publication and any assurances of licenses to be made 
+  available, or the result of an attempt made to obtain a general 
+  license or permission for the use of such proprietary rights by 
+  implementors or users of this specification, can be obtained from 
+  the OASIS Executive Director.
+
+  OASIS invites any interested party to bring to its attention any 
+  copyrights, patents or patent applications, or other proprietary 
+  rights which may cover technology that may be required to 
+  implement this specification. Please address the information to the 
+  OASIS Executive Director.
+  
+  This document and translations of it may be copied and furnished to 
+  others, and derivative works that comment on or otherwise explain 
+  it or assist in its implementation may be prepared, copied, 
+  published and distributed, in whole or in part, without restriction of 
+  any kind, provided that the above copyright notice and this 
+  paragraph are included on all such copies and derivative works. 
+  However, this document itself may not be modified in any way, 
+  such as by removing the copyright notice or references to OASIS, 
+  except as needed for the purpose of developing OASIS 
+  specifications, in which case the procedures for copyrights defined 
+  in the OASIS Intellectual Property Rights document must be 
+  followed, or as required to translate it into languages other than 
+  English. 
+
+  The limited permissions granted above are perpetual and will not be 
+  revoked by OASIS or its successors or assigns. 
+
+  This document and the information contained herein is provided on 
+  an "AS IS" basis and OASIS DISCLAIMS ALL WARRANTIES, 
+  EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY 
+  WARRANTY THAT THE USE OF THE INFORMATION HEREIN 
+  WILL NOT INFRINGE ANY RIGHTS OR ANY IMPLIED 
+  WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A 
+  PARTICULAR PURPOSE.    
+-->

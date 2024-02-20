@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://purl.oclc.org/dsdl/schematron" xmlns:u="utils" schemaVersion="iso" queryBinding="xslt2">
+  <title>Regler för DIGG XHE Profil</title>
+  <ns uri="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope" prefix="x"/>
+  <ns uri="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents" prefix="xha"/>
+  <ns uri="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents" prefix="xhb"/>
+  <ns uri="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExtensionComponents" prefix="ext"/>
+  <ns uri="http://www.w3.org/2001/04/xmlenc#" prefix="en"/>
+  <ns uri="http://www.w3.org/2000/09/xmldsig#" prefix="ds"/>
+  <ns uri="http://www.w3.org/2001/XMLSchema" prefix="xs"/>
+  <ns uri="utils" prefix="u"/>
+  
+  <!-- Context rules -->
+  <pattern>
+    <rule context="/x:XHE/ext:XHEExtensions | /x:XHE/xhb:ProfileID | /x:XHE/xhb:ProfileExecutionID | /x:XHE/xha:Header/xha:BusinessScope/xha:ExternalReference | /x:XHE/xha:Payloads/xha:Payload/xhb:Description | /x:XHE/xha:Payloads/xha:Payload/xhb:CustomizationID | /x:XHE/xha:Payloads/xha:Payload/xhb:ProfileID | /x:XHE/xha:Payloads/xha:Payload/xhb:ProfileExecutionID | /x:XHE/xha:Payloads/xha:Payload/xhb:ValidationTypeCode | /x:XHE/xha:Payloads/xha:Payload/xhb:InstanceEncryptionMethod | /x:XHE/xha:Payloads/xha:Payload/xhb:InstanceHashValue | /x:XHE/xha:Payloads/xha:Payload/xha:InstanceDecryptionInformationExternalReference | /x:XHE/xha:Payloads/xha:Payload/xha:InstanceDecryptionKeyExternalReference | /x:XHE/xha:Payloads/xha:Payload/xha:RelevantExternalReference">
+      <assert id="R1-XHE" test="false()" flag="fatal">Endast XML-element och attribut som angivits i denna specifikation får användas</assert>
+    </rule>
+  </pattern>
+
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R14-XHE" test="exists(xhb:CustomizationID)" flag="fatal">CustomizationID är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>
+      <assert id="R14-XHE" test="exists(xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion)" flag="fatal">BusinessScopeCriterionär är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>
+      <assert id="R14-XHE" test="exists(xha:Header/xha:FromParty)" flag="fatal">FromParty är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>
+      <assert id="R14-XHE" test="count(xha:Header/xha:FromParty/xha:PartyIdentification)=1" flag="fatal">FromParty/PartyIdentification får anges max 1 gång. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>      
+      <assert id="R14-XHE" test="count(xha:Header/xha:ToParty/xha:PartyIdentification)=1" flag="fatal">ToParty/PartyIdentification får anges max 1 gång. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>      
+      <assert id="R14-XHE" test="count(xha:Payloads/xha:Payload)=1" flag="fatal">Payload är obligatoriskt och får bara anges en gång. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>
+      <assert id="R14-XHE" test="exists(xha:Payloads/xha:Payload/xhb:DocumentTypeCode)" flag="fatal">DocumentTypeCode är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>
+      <assert id="R14-XHE" test="exists(xha:Payloads/xha:Payload/xhb:ContentTypeCode)" flag="fatal">ContentTypeCode är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>      
+      <assert id="R14-XHE" test="exists(xha:Payloads/xha:Payload/xha:PayloadContent)" flag="fatal">PayloadContent är obligatoriskt. Element och attribut ska anges i enlighet med den tillåtna kardinalitet som framgår i syntaxmappningen.</assert>      
+    </rule>
+  </pattern>  
+  
+  <!-- Empty elements -->
+  <pattern>
+    <rule context="//*[not(*) and not(normalize-space()) and not(ancestor::xha:PayloadContent)]">
+      <assert id="R2-XHE" test="false() or (namespace-uri(.)='http://www.w3.org/2001/04/xmlenc#' or namespace-uri(.)='http://www.w3.org/2000/09/xmldsig#')" flag="fatal">Tomma element eller attribut får inte anges</assert>
+    </rule>
+  </pattern>
+  <!-- Business rules -->
+  <pattern>
+    <rule context="/x:XHE/xhb:CustomizationID">
+      <assert id="R3-XHE" test="normalize-space(.)='urn:fdc:digg.se:edelivery:xhe:1'" flag="fatal">CustomizationID måste ha korrekt värde enligt kodlista</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R4-XHE" test="xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion[normalize-space(xhb:BusinessScopeCriterionTypeCode)='DOCUMENTID']" flag="fatal">Ett BusinessScopeCriterionTypeCode ska anges med koden DOCUMENTID</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R5-XHE" test="xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion[normalize-space(xhb:BusinessScopeCriterionTypeCode)='DOCUMENTID_SCHEME']" flag="fatal">Ett BusinessScopeCriterionTypeCode ska anges med koden DOCUMENTID_SCHEME</assert>
+    </rule>
+  </pattern>  
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R6-XHE" test="xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion[normalize-space(xhb:BusinessScopeCriterionTypeCode)='PROCESSID']" flag="fatal">Ett BusinessScopeCriterionTypeCode ska anges med koden PROCESSID</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R7-XHE" test="xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion[normalize-space(xhb:BusinessScopeCriterionTypeCode)='PROCESSID_SCHEME']" flag="fatal">Ett BusinessScopeCriterionTypeCode ska anges med koden PROCESSID_SCHEME</assert>
+    </rule>
+  </pattern>  
+  <pattern>
+    <rule context="/x:XHE">
+      <assert id="R8-XHE" test="xha:Header/xha:BusinessScope/xha:BusinessScopeCriterion[normalize-space(xhb:BusinessScopeCriterionTypeCode)='FEDERATIONID']" flag="fatal">Ett BusinessScopeCriterionTypeCode ska anges med koden FEDERATIONID</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE/xhb:XHEVersionID">
+      <assert id="R9-XHE" test="normalize-space(.)='1.0'" flag="fatal">XHEVersionID ska ha värde 1.0</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE/xha:Header/xha:FromParty/xha:PartyIdentification/xhb:ID">
+      <assert id="R10-XHE" test="normalize-space(@schemeID)='iso6523-actorid-upis'" flag="fatal">ID för FromParty ska ha attributet 'iso6523-actorid-upis'</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE/xha:Header/xha:FromParty/xha:PartyIdentification/xhb:ID">
+      <assert id="R11-XHE" test="normalize-space(@schemeID)='iso6523-actorid-upis'" flag="fatal">ID för ToParty ska ha attributet 'iso6523-actorid-upis'</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE/xha:Payloads/xha:Payload[xhb:InstanceEncryptionIndicator=true()]">
+      <assert id="R12-XHE" test="xha:PayloadContent/en:EncryptedData" flag="fatal">PayloadContent ska innehålla elementet 'EncryptedData' om InstanceEncryptionIndicator är 'true'</assert>
+    </rule>
+  </pattern>
+  <pattern>
+    <rule context="/x:XHE/xha:Payloads/xha:Payload[xhb:InstanceEncryptionIndicator=false()]">
+      <assert id="R13-XHE" test="not(xha:PayloadContent/en:EncryptedData)" flag="fatal">PayloadContent ska inte innehålla elementet 'EncryptedData' om InstanceEncryptionIndicator är 'false'</assert>
+    </rule>
+  </pattern>
+  
+</schema>

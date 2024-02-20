@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exempel för illustrera kuvertering av nyttolast som inte är XML-baserad.-->
+<x:XHE xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="http://docs.oasis-open.org/bdxr/ns/XHE/1/BasicComponents" xmlns:xha="http://docs.oasis-open.org/bdxr/ns/XHE/1/AggregateComponents" xmlns:x="http://docs.oasis-open.org/bdxr/ns/XHE/1/ExchangeHeaderEnvelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+  <XHEVersionID>1.0</XHEVersionID>
+  <CustomizationID>urn:fdc:digg.se:edelivery:xhe:1</CustomizationID>
+  <xha:Header>
+    <ID>862693f7-53d4-4d96-b35c-470055710092</ID>
+    <CreationDateTime>2019-08-15T17:52:58.1Z</CreationDateTime>
+    <xha:BusinessScope>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>DOCUMENTID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:abc:edifact:invoice##mig-xyz:1::D96:tm-base</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>DOCUMENTID_SCHEME</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>busdox-docid-qns</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>PROCESSID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:abc:example</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>PROCESSID_SCHEME</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:process</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+      <xha:BusinessScopeCriterion>
+        <BusinessScopeCriterionTypeCode>FEDERATIONID</BusinessScopeCriterionTypeCode>
+        <BusinessScopeCriterionValue>urn:fdc:digg.se:edelivery:federation:test</BusinessScopeCriterionValue>
+      </xha:BusinessScopeCriterion>
+    </xha:BusinessScope>
+    <xha:FromParty>
+      <xha:PartyIdentification>
+        <ID schemeID="iso6523-actorid-upis">0203:myndighetA.org</ID>
+      </xha:PartyIdentification>
+    </xha:FromParty>
+    <xha:ToParty>
+      <xha:PartyIdentification>
+        <ID schemeID="iso6523-actorid-upis">0203:myndighetB.org</ID>
+      </xha:PartyIdentification>
+    </xha:ToParty>
+  </xha:Header>
+  <xha:Payloads>
+    <xha:Payload>
+      <DocumentTypeCode>UNEDIFACT:S3:INVOIC:D96</DocumentTypeCode>
+      <ContentTypeCode>application/EDIFACT</ContentTypeCode>
+      <HandlingServiceID>ABC</HandlingServiceID>
+      <InstanceEncryptionIndicator>false</InstanceEncryptionIndicator>
+      <xha:PayloadContent>VU5CK1VOT0E6MSswMTAxMDAwMDI1MzAwMStPMDAxMzAwMDA5M1NDSEEtWjU5Kzk5MTAwNjoxOTAyK1BBWU8wMDEyMTAxMjIxJwpVTkgrMStJTlZPSUM6RDo5N0E6VU4nCkJHTSszODErMTA2MDExMzgwMDAyNis5JwpEVE0rMTM3OjE5OTkxMDA2MDAwMDoxMDInCk5BRCtCVCtBQ01FIExURDo6OTEnClJGRitWQTozODIzMjQwNjcnCk5BRCtTVSsyMDAyOTkzOjo5MicKUkZGK1ZBOjEyMzg0NDc1MCcKQ1VYKzI6RVVSJwpQQVQrMScKRFRNKzE0MDoxOTk5MTAzMToxMDInCkxJTisrKzA5MDM0NjY0MjpJTicKUVRZKzEyOjU0OlBDRScKTU9BKzIwMzoxOTYwLjI5JwpQUkkrQUFBOjM2MzAuMTcyNDo6TlRQOjEwMDpDNjInClJGRitTSToxNjU0ODAnCkRUTSsxMToxOTk5MDkyODAwMDA6MTAyJwpSRkYrT046WDE4VjAwMDAzJwpSRkYrVE46QUIxJwpUQVgrNytWQVQrKys6OjowJwpOQUQrU1QrMDIzOjo5MicKVU5TK1MnCk1PQSs3NzoxOTYwLjI5JwpUQVgrNytWQVQnClVOVCsyNCsxJwpVTlorMStQQVlPMDAxMjEwMTIyMSc=</xha:PayloadContent>
+    </xha:Payload>
+  </xha:Payloads>
+</x:XHE>
