@@ -11,5 +11,5 @@ sdk-meddelande-3.1 innehåller
 
 
 Relaterade meddelandetyper och specifikationer:
-- [XHE](</Accesspunktoperatör (Block C)/Tekniska specifiktioner/Kuverteringsprofil XHE>)
-- [Meddelandekvitten](</Accesspunktoperatör (Block C)/Tillämpningar/Medelandekvittens1>)
+- [XHE](</Accesspunktoperatör/Tekniska specifiktioner/C3.2.2 Kuverteringsprofil-XHE/>)
+- [Meddelandekvittens](</Accesspunktoperatör/Meddelandetyper/Medelandekvittens-1/>)
