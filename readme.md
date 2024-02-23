@@ -18,11 +18,7 @@ Specifikation och stödjande material för Leverantörer av meddelandesystem.
 
 ### C-Accesspunktsoperatör (Block C)
 Specifikationer och stödjande dokumentation
-- Miljöbeskrivningar 
-- Open federation (OPEN-TEST)
-- SDK federation (SDK QA)
-  - QA-miljö (SDK QA)
-  - Produktionsmiljö
+- Miljöer 
 - Komponentspecifikationer
 - Tekniska specifikationer
   - Kuverteringsprofil XHE
@@ -32,9 +28,6 @@ Specifikationer och stödjande dokumentation
     - Meddelandekvittens (Flytta till dokumenttyper)
   - Transportmodeller
     - Utökad bas (Flytta till tekniska specifikationer?)
-
-
-
 
 
 ### Certifikatskedjor
