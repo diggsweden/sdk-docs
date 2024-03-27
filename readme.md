@@ -5,7 +5,7 @@
 
 Projektet innehåller stödjande exempelfiler och kodexempel för leverantörer av komponenter Accesspunkt och Meddelandetjänst.
 
-Läs mer om Säker digital kommunikation på Diggs informationssidor https://digg.sdk.se
+Läs mer om Säker digital kommunikation på Diggs informationssidor https://sdk.digg.se
 
 
 ### Meddelandesystem (Block B)
