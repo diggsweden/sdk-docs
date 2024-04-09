@@ -20,7 +20,7 @@ specifikationen openAPI (version 3.1.x) och är utformat enligt/inspirerat av
 JSON:API.
 
 
-[Länk till dokumentation B1.4.2 Rekommendation API MT/MK](../API/B1.4.2%20-%20Rekommendation%20API%20MT-MK.pdf)
+[Länk till dokumentation B1.4.2 Rekommendation API MT/MK](../api-mt-mk/B1.4.2%20-%20SDK%20Rekommendation%20API%20MT-MK.pdf)
 
-[Länk openAPI specifikation för API MT/MK](../API/sdk-api-restful.yml)
+[Länk openAPI specifikation för API MT/MK](../api-mt-mk/sdk-api-restful.yml)
 
