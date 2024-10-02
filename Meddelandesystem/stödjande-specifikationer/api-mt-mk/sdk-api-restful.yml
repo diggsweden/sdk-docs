@@ -414,14 +414,14 @@ components:
           $ref: "#/components/schemas/Events"
 
       required:
-      - messageStatus
-      - creationDateTime
-      - messageId
-      - conversationId
-      - confidentiality
-      - label
-      - sender
-      - recipient
+        - messageStatus
+        - creationDateTime
+        - messageId
+        - conversationId
+        - confidentiality
+        - label
+        - sender
+        - recipient
 
     messageCreateAttributesDef:
       type: object
@@ -472,10 +472,10 @@ components:
           $ref: "#/components/schemas/Events"
 
       required:
-      - confidentiality
-      - label
-      - sender
-      - recipient  
+        - confidentiality
+        - label
+        - sender
+        - recipient  
     
     creationDateTimeDef:
       type: string
