@@ -99,8 +99,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                description: Return a messages
                 $ref: "#/components/schemas/outputArrayData"
         "400":
           description: BadRequest
@@ -163,8 +161,6 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                description: Returns a metadata based on messageId
                 $ref: "#/components/schemas/outputData"   
         "400":
           description: BadRequest
@@ -249,7 +245,6 @@ components:
       description: "Message object containing metadata and payload/message"
       properties:
         data:
-          type: object
           $ref: "#/components/schemas/messageCreateDef"
 
     outputData:
@@ -268,8 +263,6 @@ components:
               $ref: "#/components/schemas/linksDef"
           
         data:
-          type: object
-          description: Returns a single messages object.
           $ref: "#/components/schemas/messageDef"
 
     outputArrayData:
@@ -330,8 +323,6 @@ components:
           example: 19c7e876-ef6f-4fb0-bccb-e93e3ab6e69f
         
         attributes:
-          type: object
-          properties:
           $ref: "#/components/schemas/messageAttributesDef"
 
           required:
@@ -352,8 +343,6 @@ components:
           example: 19c7e876-ef6f-4fb0-bccb-e93e3ab6e69f
         
         attributes:
-          type: object
-          properties:
           $ref: "#/components/schemas/messageCreateAttributesDef"
 
           required:
@@ -381,7 +370,7 @@ components:
       description: "SDK Meddelande"
       properties:
         messageStatus:
-              $ref: "#/components/schemas/messageStatusDef"
+          $ref: "#/components/schemas/messageStatusDef"
 
         creationDateTime:
           $ref: "#/components/schemas/creationDateTimeDef"
@@ -420,11 +409,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/DigitalDocumentDef"
-            description: DigitalDocument 
 
         events:  
-              type: array
-              $ref: "#/components/schemas/Events"
+          $ref: "#/components/schemas/Events"
 
       required:
       - messageStatus
@@ -441,7 +428,7 @@ components:
       description: "SDK Meddelande. When created id, messageId and conversationId is optional(Created by API producer - MT). "
       properties:
         messageStatus:
-              $ref: "#/components/schemas/messageStatusDef"
+          $ref: "#/components/schemas/messageStatusDef"
 
         creationDateTime:
           $ref: "#/components/schemas/creationDateTimeDef"
@@ -480,11 +467,9 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/DigitalDocumentDef"
-            description: DigitalDocument 
 
         events:  
-              type: array
-              $ref: "#/components/schemas/Events"
+          $ref: "#/components/schemas/Events"
 
       required:
       - confidentiality
