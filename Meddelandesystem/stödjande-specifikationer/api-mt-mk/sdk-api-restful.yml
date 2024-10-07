@@ -537,9 +537,7 @@ components:
           type: string
         extension:
           type: string
-        label:
-            type: string
-    
+
     recipientAttentionDef:
       type: object
       properties:
